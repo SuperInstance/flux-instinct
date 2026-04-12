@@ -51,21 +51,21 @@ mod tests {
     #[test]
     fn engine_survive_at_critical_energy() {
         let mut eng = InstinctEngine::new(Thresholds::default());
-        let refs = eng.tick(0.1, 0.0, 0.0, true, false);
+        let _refs = eng.tick(0.1, 0.0, 0.0, true, false);
         assert!(eng.is_firing(InstinctType::Survive));
     }
 
     #[test]
     fn engine_flee_at_high_threat() {
         let mut eng = InstinctEngine::new(Thresholds::default());
-        let refs = eng.tick(0.9, 0.8, 0.0, true, false);
+        let _refs = eng.tick(0.9, 0.8, 0.0, true, false);
         assert!(eng.is_firing(InstinctType::Flee));
     }
 
     #[test]
     fn engine_hoard_at_low_but_not_critical() {
         let mut eng = InstinctEngine::new(Thresholds::default());
-        let refs = eng.tick(0.3, 0.0, 0.0, true, false);
+        let _refs = eng.tick(0.3, 0.0, 0.0, true, false);
         assert!(eng.is_firing(InstinctType::Hoard));
         assert!(!eng.is_firing(InstinctType::Survive));
     }
@@ -73,14 +73,14 @@ mod tests {
     #[test]
     fn engine_cooperate_with_high_trust() {
         let mut eng = InstinctEngine::new(Thresholds::default());
-        let refs = eng.tick(0.9, 0.0, 0.7, true, false);
+        let _refs = eng.tick(0.9, 0.0, 0.7, true, false);
         assert!(eng.is_firing(InstinctType::Cooperate));
     }
 
     #[test]
     fn engine_teach_with_very_high_trust() {
         let mut eng = InstinctEngine::new(Thresholds::default());
-        let refs = eng.tick(0.9, 0.0, 0.9, true, false);
+        let _refs = eng.tick(0.9, 0.0, 0.9, true, false);
         assert!(eng.is_firing(InstinctType::Teach));
     }
 
@@ -106,7 +106,7 @@ mod tests {
     #[test]
     fn engine_guard_when_has_work() {
         let mut eng = InstinctEngine::new(Thresholds::default());
-        let refs = eng.tick(0.8, 0.0, 0.0, true, true);
+        let _refs = eng.tick(0.8, 0.0, 0.0, true, true);
         assert!(eng.is_firing(InstinctType::Guard));
     }
 
@@ -114,7 +114,7 @@ mod tests {
     fn engine_mourn_on_peer_death() {
         let mut eng = InstinctEngine::new(Thresholds::default());
         eng.tick(0.8, 0.0, 0.0, true, false); // peer alive
-        let refs = eng.tick(0.8, 0.0, 0.0, false, false); // peer dies
+        let _refs = eng.tick(0.8, 0.0, 0.0, false, false); // peer dies
         assert!(eng.is_firing(InstinctType::Mourn));
     }
 
